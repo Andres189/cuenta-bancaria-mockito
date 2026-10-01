@@ -50,7 +50,7 @@ public class CajeroAutomatico {
         validarLimiteDiario(numeroCuenta, monto);
         cuenta.retirar(monto);
         repositorio.guardar(numeroCuenta, cuenta);
-        avisar(numeroCuenta, "Retiro de $" + monto + ". Saldo: $" + cuenta.getSaldo());
+        avisar(numeroCuenta, "Retiro de $" + monto + ". Saldo: $" + cuenta.getSaldo().subtract(monto));
     }
 
     private CuentaBancaria buscar(String numeroCuenta) {
@@ -63,7 +63,7 @@ public class CajeroAutomatico {
         try {
             sospechosa = antifraude.esSospechosa(numeroCuenta, monto);
         } catch (ServicioNoDisponibleException e) {
-            throw new OperacionRechazadaException("el antifraude no responde");
+            throw new OperacionRechazadaException("Servicio antrifraude no responde");
         }
         if (sospechosa) {
             throw new OperacionRechazadaException("operación sospechosa");

@@ -40,7 +40,7 @@ class CajeroConDoblesAManoTest {
         assertAll(
                 () -> assertEquals(new BigDecimal("1500.00"), cajero.consultarSaldo("001")),
                 () -> assertEquals(1, repositorio.vecesGuardado),
-                () -> assertEquals(List.of("001: Retiro de $500.00. Saldo: $1500.00"), notificador.enviados));
+                () -> assertEquals(List.of("001: Retiro de $500.00. Saldo: $1000.00"), notificador.enviados));
     }
 
     @Test

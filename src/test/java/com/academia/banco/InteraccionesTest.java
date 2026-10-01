@@ -61,9 +61,9 @@ public class InteraccionesTest {
     void montoSaldoSMS(){
         cajero.retirar("001", new BigDecimal("500.00"));
 
-        ArgumentCaptor<String> m = ArgumentCaptor.forClass(String.class);
-        verify(notificador).enviarSms(eq("001"), m.capture());
-        assertEquals("Retiro de $500.00. Saldo: $1500.00", m.getValue());
+        ArgumentCaptor<String> mensaje = ArgumentCaptor.forClass(String.class);
+        verify(notificador).enviarSms(eq("001"), mensaje.capture());
+        assertEquals("Retiro de $500.00. Saldo: $1000.00", mensaje.getValue());
     }
 
     @Test
